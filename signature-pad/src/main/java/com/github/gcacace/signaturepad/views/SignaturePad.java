@@ -110,10 +110,6 @@ public class SignaturePad extends View {
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable("superState", super.onSaveInstanceState());
-        if (this.mHasEditState == null || this.mHasEditState) {
-            this.mBitmapSavedState = this.getTransparentSignatureBitmap();
-        }
-        bundle.putParcelable("signatureBitmap", this.mBitmapSavedState);
         return bundle;
     }
 
@@ -121,8 +117,6 @@ public class SignaturePad extends View {
     protected void onRestoreInstanceState(Parcelable state) {
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
-            this.setSignatureBitmap((Bitmap) bundle.getParcelable("signatureBitmap"));
-            this.mBitmapSavedState = bundle.getParcelable("signatureBitmap");
             state = bundle.getParcelable("superState");
         }
         this.mHasEditState = false;
